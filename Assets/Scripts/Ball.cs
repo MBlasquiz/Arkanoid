@@ -1,12 +1,15 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
     [Header("Basic Properties")]
+    [Range(4f, 10f)]
     [SerializeField] private float speed = 5f;
+    [Range(5f, 15f)]
+    [SerializeField] private float maxSpeed = 10f;
+    [Range(0f, 1f)]
+    [SerializeField] private float speedIncrement = 0.25f;
     private Vector2 direction;
 
     void Start()
@@ -32,9 +35,22 @@ public class Ball : MonoBehaviour
         {
             direction.x = -direction.x;
         }
-        if(other.tag == "Ceil" || other.tag == "Player" || other.tag == "Block")
+        if(other.tag == "Ceil" || other.tag == "Block")
         {
             direction.y = -direction.y;
         }
+
+        if(other.tag == "Player")
+        {
+            direction.y = -(direction.y);
+            var pos = other.ClosestPoint(transform.position).normalized;
+
+            direction.x += pos.x;
+            if(speed < maxSpeed)
+            {
+                speed+=speedIncrement;
+            }
+        }
+
     }
 }

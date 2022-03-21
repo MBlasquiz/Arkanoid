@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5388480733574557266}
   - component: {fileID: 2960137167956959767}
   m_Layer: 0
-  m_Name: Blocks
+  m_Name: Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,3 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e499fad1606bd14e80aea1e49f5878a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfRows: 4
+  numberOfBlocksPerRow: 6
+  probabilityUnbreakableBlock: 0.1
+  BlocksPrefabs:
+  - {fileID: 7060943163430460341, guid: 4bc9b240978c0ea4b9915d6ec24f8374, type: 3}
+  - {fileID: 7060943163430460341, guid: c3a5e8009bcd3544f82bdee51fbfd6c0, type: 3}
+  - {fileID: 7060943163430460341, guid: 63b9cc65c495f2d45a5b4c2bd1c0bf1f, type: 3}
+  UnbreakableBlockPrefabs: {fileID: 7060943163430460341, guid: d2133ff71ae92d44db7c6956d361b807, type: 3}
