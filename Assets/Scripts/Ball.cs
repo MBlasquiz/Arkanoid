@@ -11,15 +11,29 @@ public class Ball : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float speedIncrement = 0.25f;
     private Vector2 direction;
+    private float initialSpeed;
+    private const float inferiorLimit = -5f;
 
     void Start()
     {
+        initialSpeed = speed;
+        Init();
+    }
+
+    private void Init()
+    {
         direction = new Vector2(UnityEngine.Random.Range(-3, 3), 1);
+        transform.position = new Vector3(0, -2.5f, 0);
+        speed = initialSpeed;
     }
 
     void Update()
     {
         Move();
+        if(IsOutsideLimits())
+        {
+            Init();
+        }
     }
 
     private void Move()
@@ -27,6 +41,11 @@ public class Ball : MonoBehaviour
         transform.Translate(direction.x * speed * Time.deltaTime,
                             direction.y * speed * Time.deltaTime, 
                             0);
+    }
+
+    private bool IsOutsideLimits()
+    {
+        return transform.position.y < inferiorLimit;
     }
 
     private void OnTriggerEnter(Collider other) 
