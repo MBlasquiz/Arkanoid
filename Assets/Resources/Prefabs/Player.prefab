@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be5a478cfb28d149a0c8d3664e4ff73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontalSpeed: 10
+  MinMaxPosition: {x: -5, y: 5}
 --- !u!1 &6888504837166420933
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +61,7 @@ GameObject:
   - component: {fileID: 2501510908673260578}
   m_Layer: 0
   m_Name: Pale
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
