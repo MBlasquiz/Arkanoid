@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour
     private Vector2 direction;
     private float initialSpeed;
     private const float inferiorLimit = -5f;
+    public Action onLostBall;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class Ball : MonoBehaviour
         Move();
         if(IsOutsideLimits())
         {
+            onLostBall?.Invoke();
             Init();
         }
     }
