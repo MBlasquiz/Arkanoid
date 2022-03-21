@@ -32,7 +32,7 @@ public class Ball : MonoBehaviour
         {
             direction.x = -direction.x;
         }
-        if(other.tag == "Ceil" || other.tag == "Player")
+        if(other.tag == "Ceil" || other.tag == "Player" || other.tag == "Block")
         {
             direction.y = -direction.y;
         }
