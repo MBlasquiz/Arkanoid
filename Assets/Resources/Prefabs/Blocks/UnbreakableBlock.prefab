@@ -112,7 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 3
-  isUnbreakable: 1
+  isUnbreakableBlock: 1
+  probabilityToDropCapsule: 0.15
+  capsules: []
 --- !u!54 &3177454606961456385
 Rigidbody:
   m_ObjectHideFlags: 0

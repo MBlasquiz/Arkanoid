@@ -46,9 +46,11 @@ public class LevelGenerator : MonoBehaviour
     private void GenerateRow(float yPosition)
     {
         var position = new Vector3(xMin, yPosition, 0);
-        for(var block=0; block<numberOfBlocksPerRow; block++)
-        {            
-            Instantiate(GetRandomPrefab(), position, Quaternion.identity, transform);
+        for(var i=0; i<numberOfBlocksPerRow; i++)
+        {     
+            var block = PrefabUtility.InstantiatePrefab(GetRandomPrefab()) as GameObject;
+            block.transform.position = position;
+            //Instantiate(GetRandomPrefab(), position, Quaternion.identity, transform);
             position.x+=blockWidth;
         }
     }
