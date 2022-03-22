@@ -18,6 +18,11 @@ public class HealthController : MonoBehaviour
         {
             lifes--;
             onLostLife?.Invoke(lifes);
+
+            if(lifes == 0)
+            {
+                Application.Quit();
+            }
         }
     }
 }
