@@ -7,6 +7,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Basic properties")]
     [Range(4f, 15f)]
     [SerializeField] private float horizontalSpeed = 10f;
+    private bool isInvertedKeyboard = false;
+
+    internal void InverseMovement(bool isInverted)
+    {
+        isInvertedKeyboard = isInverted;
+    }
+
     [SerializeField] private Vector2 MinMaxPosition = new Vector2(-5, 5);
     private const float YPosition = -3.75f;
 
@@ -18,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        var translation = Input.GetAxis("Horizontal") * horizontalSpeed;
+        var invertedMovement = isInvertedKeyboard ? -1 : 1;
+        var translation = Input.GetAxis("Horizontal") * horizontalSpeed * invertedMovement;
         translation *= Time.deltaTime;
         transform.Translate(translation, 0, 0);
     }

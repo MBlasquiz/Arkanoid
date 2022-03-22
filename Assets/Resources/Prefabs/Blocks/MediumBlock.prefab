@@ -113,6 +113,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 2
   isUnbreakable: 0
+  probabilityToDropCapsule: 0.15
+  capsules:
+  - {fileID: 6304898294968740720, guid: 1c58ca4f88835d74aaf89e8fc13efceb, type: 3}
+  - {fileID: 6304898294968740720, guid: ee09a55d3ce282b4aa985a0e3b4d83dc, type: 3}
 --- !u!54 &3177454606961456385
 Rigidbody:
   m_ObjectHideFlags: 0
