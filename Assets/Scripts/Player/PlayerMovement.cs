@@ -16,6 +16,13 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Vector2 MinMaxPosition = new Vector2(-5, 5);
     private const float YPosition = -3.75f;
+    private Vector3 initialPosition;
+
+    private void Start() {
+        initialPosition = transform.position;
+        FindObjectOfType<Ball>().onLostBall += SetInitialPosition;
+        FindObjectOfType<GameController>().onNextLevel +=  SetInitialPosition;
+    }
 
     void Update()
     {
@@ -41,5 +48,10 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = new Vector3(MinMaxPosition.y, YPosition, 0);
         }
+    }
+
+    private void SetInitialPosition()
+    {
+        transform.position = initialPosition;
     }
 }

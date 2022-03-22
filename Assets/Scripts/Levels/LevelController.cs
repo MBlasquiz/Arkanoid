@@ -5,7 +5,7 @@ using System.Linq;
 public class LevelController : MonoBehaviour
 {
     private int numberOfblocks;
-    public Action onNewLevel;
+    public Action onFinishedLevel;
 
 
     private void Start() 
@@ -18,16 +18,13 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    private void Update() 
-    {
-        if(numberOfblocks == 0)
-        {
-            onNewLevel?.Invoke();
-        }
-    }
-
     private void UpdateCounter()
     {
         numberOfblocks--;
+        if(numberOfblocks == 0)
+        {
+            Debug.Log("Finished");
+            onFinishedLevel?.Invoke();
+        }
     }
 }

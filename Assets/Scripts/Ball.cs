@@ -18,6 +18,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         initialSpeed = speed;
+        FindObjectOfType<GameController>().onNextLevel +=  Init;
         Init();
     }
 
