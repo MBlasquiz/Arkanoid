@@ -113,8 +113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  maxSpeed: 10
+  maxSpeed: 8
   speedIncrement: 0.25
+  timeBeforeStart: 0.75
   onBouncing: {fileID: 8300000, guid: 673e0c563e49943e983f44f0fb941436, type: 3}
   onBreakingBlock: {fileID: 8300000, guid: c47f17948f55d41c5876af88204e7f46, type: 3}
 --- !u!54 &791509959

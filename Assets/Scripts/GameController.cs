@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private int currentLevel = 0;
     private const int maxLevel = 2;
     public Action onNextLevel;
+    public Action<string> onFinishedGame;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class GameController : MonoBehaviour
     {
         var level = Instantiate(Levels[currentLevel], transform);
         level.GetComponent<LevelController>().onFinishedLevel += NextLevel;
+        FindObjectOfType<HealthController>().onGameOver += Restart;
     }
 
     private void NextLevel()
@@ -28,22 +30,19 @@ public class GameController : MonoBehaviour
         if(currentLevel < maxLevel)
         {
             currentLevel++;
-            ClearBlocks();
-            onNextLevel?.Invoke();
-            LoadLevel();
+            StartGame();
         }
-        if(currentLevel == maxLevel)
+        if (currentLevel == maxLevel)
         {
-            Debug.Log("You Win");
-            #if UNITY_EDITOR
-            if(EditorApplication.isPlaying) 
-            {
-                UnityEditor.EditorApplication.isPlaying = false;
-            }
-            #else
-            Application.Quit();
-            #endif
+            Restart("You Win");
         }
+    }
+
+    private void StartGame()
+    {
+        ClearBlocks();
+        onNextLevel?.Invoke();
+        LoadLevel();
     }
 
     private void ClearBlocks()
@@ -52,5 +51,20 @@ public class GameController : MonoBehaviour
         {
             Destroy(transform.GetChild(childIndex).gameObject);
         }
+    }
+
+    private void Restart(string text)
+    {
+        StartCoroutine(NewGame(text));
+    }
+
+    private IEnumerator NewGame(string text)
+    {
+        onFinishedGame?.Invoke(text);
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(1.5f);
+        currentLevel = 0;
+        StartGame();
+        Time.timeScale = 1;
     }
 }

@@ -7,6 +7,8 @@ public class HealthController : MonoBehaviour
     [Header("Lifes properties")]
     [SerializeField] private int lifes = 3;
     public Action<int> onLostLife;
+    public Action<string> onGameOver;
+
     void Start()
     {
         GameObject.FindGameObjectWithTag("Ball").GetComponent<Ball>().onLostBall+=onLostBall;
@@ -22,15 +24,7 @@ public class HealthController : MonoBehaviour
 
             if(lifes == 0)
             {
-                Debug.Log("Game Over");
-                #if UNITY_EDITOR
-                if(EditorApplication.isPlaying) 
-                {
-                    UnityEditor.EditorApplication.isPlaying = false;
-                }
-                #else
-                Application.Quit();
-                #endif
+                onGameOver?.Invoke("Game Over");
             }
         }
     }
