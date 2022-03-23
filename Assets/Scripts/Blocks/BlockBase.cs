@@ -29,16 +29,21 @@ public class BlockBase : MonoBehaviour
 
             if(lives <= 0)
             {
-                var prob = UnityEngine.Random.Range(0f,1f);
-                if(prob < probabilityToDropCapsule)
-                {
-                    Instantiate(capsules[UnityEngine.Random.Range(0,capsules.Count)],
-                                transform.position, 
-                                Quaternion.identity);
-                }
+                DropCapsule();
                 onBlockDestroyed?.Invoke();
                 Destroy(gameObject);
             }
+        }
+    }
+
+    private void DropCapsule()
+    {
+        var prob = UnityEngine.Random.Range(0f, 1f);
+        if (prob < probabilityToDropCapsule)
+        {
+            Instantiate(capsules[UnityEngine.Random.Range(0, capsules.Count)],
+                        transform.position,
+                        Quaternion.identity);
         }
     }
 }

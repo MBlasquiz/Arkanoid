@@ -76,6 +76,7 @@ public class Ball : MonoBehaviour
             direction.x = -direction.x;
             audioSource.PlayOneShot(onBouncing);
         }
+        
         if(other.tag == Tags.Ceil.ToString() || other.tag == Tags.Block.ToString())
         {
             direction.y = -direction.y;

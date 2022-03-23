@@ -27,14 +27,20 @@ public class GameController : MonoBehaviour
 
     private void NextLevel()
     {
-        if (currentLevel == maxLevel)
-        {
-            Restart("You Win");
-        }
-        if(currentLevel < maxLevel)
+        CheckWinningCondition();
+        
+        if (currentLevel < maxLevel)
         {
             StartGame();
             currentLevel++;
+        }
+    }
+
+    private void CheckWinningCondition()
+    {
+        if (currentLevel == maxLevel)
+        {
+            Restart("You Win");
         }
     }
 
