@@ -14,7 +14,7 @@ public abstract class CapsuleBase : MonoBehaviour
     private AudioSource audioSource;
 
     protected void Start() {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag(Tags.Player.ToString());
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -30,7 +30,7 @@ public abstract class CapsuleBase : MonoBehaviour
     protected abstract void Recover();
 
     private void OnTriggerEnter(Collider other) {
-        if(other.tag == "Player")
+        if(other.tag == Tags.Player.ToString())
         {
             audioSource.Play();
             isUsed = true;

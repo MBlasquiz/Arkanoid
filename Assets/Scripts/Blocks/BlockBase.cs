@@ -22,7 +22,7 @@ public class BlockBase : MonoBehaviour
         if(!isUnbreakable)
         {
 
-            if(other.tag == "Ball" && lives > 0)
+            if(other.tag == Tags.Ball.ToString() && lives > 0)
             {
                 lives--;
             }

@@ -22,6 +22,7 @@ public class HealthController : MonoBehaviour
     private void Restore(string text)
     {
         lifes = originalLifes;
+        onLostLife?.Invoke(lifes);
     }
 
     private void onLostBall()

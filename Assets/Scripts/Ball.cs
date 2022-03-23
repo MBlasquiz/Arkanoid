@@ -71,22 +71,22 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(other.tag == "Wall")
+        if(other.tag == Tags.Wall.ToString())
         {
             direction.x = -direction.x;
             audioSource.PlayOneShot(onBouncing);
         }
-        if(other.tag == "Ceil" || other.tag == "Block")
+        if(other.tag == Tags.Ceil.ToString() || other.tag == Tags.Block.ToString())
         {
             direction.y = -direction.y;
 
-            if(other.tag == "Block")
+            if(other.tag == Tags.Block.ToString())
             {
                 audioSource.PlayOneShot(onBreakingBlock);
             }
         }
 
-        if(other.tag == "Player")
+        if(other.tag == Tags.Player.ToString())
         {
             audioSource.PlayOneShot(onBouncing);
             direction.y = -(direction.y);

@@ -8,7 +8,7 @@ public class HealthText : MonoBehaviour
     void Start()
     {
         lifes = GetComponent<TextMeshProUGUI>();
-        GameObject.FindGameObjectWithTag("Player").GetComponent<HealthController>().onLostLife+=UpdateText;
+        GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<HealthController>().onLostLife+=UpdateText;
     }
 
     void UpdateText(int amount)

@@ -50,7 +50,6 @@ public class LevelGenerator : MonoBehaviour
         {     
             var block = PrefabUtility.InstantiatePrefab(GetRandomPrefab()) as GameObject;
             block.transform.position = position;
-            //Instantiate(GetRandomPrefab(), position, Quaternion.identity, transform);
             position.x+=blockWidth;
         }
     }
