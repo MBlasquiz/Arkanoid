@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -11,6 +12,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private float maxSpeed = 10f;
     [Range(0f, 1f)]
     [SerializeField] private float speedIncrement = 0.25f;
+    [SerializeField] private float timeBeforeStart = 0.75f;
 
     [Header("Audio settings")]
     [SerializeField] private AudioClip onBouncing;
@@ -31,8 +33,17 @@ public class Ball : MonoBehaviour
 
     private void Init()
     {
+        StartCoroutine(SetInitialPosition());
+    }
+
+    private IEnumerator SetInitialPosition()
+    {
         direction = new Vector2(UnityEngine.Random.Range(1, 4), 1);
         transform.position = new Vector3(0, -2.5f, 0);
+        speed = 0;
+
+        yield return new WaitForSeconds(timeBeforeStart);
+
         speed = initialSpeed;
     }
 
