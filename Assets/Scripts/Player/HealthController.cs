@@ -9,12 +9,21 @@ public class HealthController : MonoBehaviour
     public Action<int> onLostLife;
     public Action<string> onGameOver;
 
+    private int originalLifes;
+
     void Start()
     {
-        GameObject.FindGameObjectWithTag("Ball").GetComponent<Ball>().onLostBall+=onLostBall;
+        originalLifes = lifes;
+        FindObjectOfType<Ball>().onLostBall+=onLostBall;
+        FindObjectOfType<GameController>().onFinishedGame += Restore;
         onLostLife?.Invoke(lifes);
     }
     
+    private void Restore(string text)
+    {
+        lifes = originalLifes;
+    }
+
     private void onLostBall()
     {
         if(lifes > 0)
