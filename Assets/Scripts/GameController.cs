@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -30,6 +31,18 @@ public class GameController : MonoBehaviour
             ClearBlocks();
             onNextLevel?.Invoke();
             LoadLevel();
+        }
+        if(currentLevel == maxLevel)
+        {
+            Debug.Log("You Win");
+            #if UNITY_EDITOR
+            if(EditorApplication.isPlaying) 
+            {
+                UnityEditor.EditorApplication.isPlaying = false;
+            }
+            #else
+            Application.Quit();
+            #endif
         }
     }
 

@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public class HealthController : MonoBehaviour
@@ -21,7 +22,15 @@ public class HealthController : MonoBehaviour
 
             if(lifes == 0)
             {
+                Debug.Log("Game Over");
+                #if UNITY_EDITOR
+                if(EditorApplication.isPlaying) 
+                {
+                    UnityEditor.EditorApplication.isPlaying = false;
+                }
+                #else
                 Application.Quit();
+                #endif
             }
         }
     }
