@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
+[RequireComponent(typeof(AudioSource))]
 public class BlockBase : MonoBehaviour
 {
     [Header ("Basic Properties")]
@@ -16,12 +17,18 @@ public class BlockBase : MonoBehaviour
     [SerializeField] private List<GameObject> capsules;
     public Action onBlockDestroyed;
 
+    private AudioSource audioSource;
+
+    private void Start() {
+        audioSource = GetComponent<AudioSource>();   
+    }
     private void OnTriggerEnter(Collider other) 
     {
         if(!isUnbreakable)
         {
             if(other.tag == "Ball" && lives > 0)
             {
+                audioSource.Play();
                 lives--;
             }
 

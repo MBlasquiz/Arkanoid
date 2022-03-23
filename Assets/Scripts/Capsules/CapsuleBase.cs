@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public abstract class CapsuleBase : MonoBehaviour
 {  
     [Header("Basic Properties")]
@@ -11,9 +11,11 @@ public abstract class CapsuleBase : MonoBehaviour
     private const float inferiorLimit = -5;
     protected GameObject Player;
     private bool isUsed = false;
+    private AudioSource audioSource;
 
     protected void Start() {
         Player = GameObject.FindGameObjectWithTag("Player");
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -30,6 +32,7 @@ public abstract class CapsuleBase : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player")
         {
+            audioSource.Play();
             isUsed = true;
             ExecuteAction();
             StartCoroutine(RecoverEffect()); 
