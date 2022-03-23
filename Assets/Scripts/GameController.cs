@@ -38,7 +38,6 @@ public class GameController : MonoBehaviour
         for(var childIndex = 0; childIndex < transform.childCount; childIndex++)
         {
             Destroy(transform.GetChild(childIndex).gameObject);
-            Debug.Break();
         }
     }
 }

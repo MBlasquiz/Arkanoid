@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Ball : MonoBehaviour
 {
     [Header("Basic Properties")]
@@ -10,21 +11,27 @@ public class Ball : MonoBehaviour
     [SerializeField] private float maxSpeed = 10f;
     [Range(0f, 1f)]
     [SerializeField] private float speedIncrement = 0.25f;
+
+    [Header("Audio settings")]
+    [SerializeField] private AudioClip onBouncing;
+    [SerializeField] private AudioClip onBreakingBlock;
     private Vector2 direction;
     private float initialSpeed;
     private const float inferiorLimit = -5f;
     public Action onLostBall;
+    private AudioSource audioSource;
 
     void Start()
     {
         initialSpeed = speed;
         FindObjectOfType<GameController>().onNextLevel +=  Init;
+        audioSource = GetComponent<AudioSource>();
         Init();
     }
 
     private void Init()
     {
-        direction = new Vector2(UnityEngine.Random.Range(-3, 3), 1);
+        direction = new Vector2(UnityEngine.Random.Range(1, 4), 1);
         transform.position = new Vector3(0, -2.5f, 0);
         speed = initialSpeed;
     }
@@ -56,14 +63,21 @@ public class Ball : MonoBehaviour
         if(other.tag == "Wall")
         {
             direction.x = -direction.x;
+            audioSource.PlayOneShot(onBouncing);
         }
         if(other.tag == "Ceil" || other.tag == "Block")
         {
             direction.y = -direction.y;
+
+            if(other.tag == "Block")
+            {
+                audioSource.PlayOneShot(onBreakingBlock);
+            }
         }
 
         if(other.tag == "Player")
         {
+            audioSource.PlayOneShot(onBouncing);
             direction.y = -(direction.y);
             var pos = other.ClosestPoint(transform.position).normalized;
 

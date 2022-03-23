@@ -23,7 +23,6 @@ public class LevelController : MonoBehaviour
         numberOfblocks--;
         if(numberOfblocks == 0)
         {
-            Debug.Log("Finished");
             onFinishedLevel?.Invoke();
         }
     }
